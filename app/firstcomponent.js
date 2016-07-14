@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/from');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var Subject_1 = require('rxjs/Subject');
@@ -26,7 +25,7 @@ var first = (function () {
         this.proxySubject = new Subject_1.Subject();
         //how to subscribe to the observable this can also done with simple
         //variable, lets not do this
-        this.proxySubject = Observable_1.Observable.from(this.array);
+        // this.proxySubject = Observable.from(this.array);
         //   Observable.from(this.array).subscribe(function(data){
         //        console.log("from observable "+ data)
         //    })

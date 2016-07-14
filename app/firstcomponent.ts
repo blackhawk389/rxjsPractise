@@ -43,7 +43,7 @@ export class first{
      this.proxySubject = new Subject();
      //how to subscribe to the observable this can also done with simple
      //variable, lets not do this
-    this.proxySubject = Observable.from(this.array);
+   // this.proxySubject = Observable.from(this.array);
     //   Observable.from(this.array).subscribe(function(data){
           
     //        console.log("from observable "+ data)
