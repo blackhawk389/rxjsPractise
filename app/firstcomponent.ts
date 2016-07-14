@@ -24,13 +24,23 @@ export class first{
      inputValue: string;
      array = [];
      
+       observer = {
+         next: v => console.log(v),
+         complete: () => console.log("complete") 
+         
+     }
+   
+     
      //proxySubject = Observable.from(this.array);
      
     //  1. You are subscribing everytime the button clicked, you should subscribe once 2. Your first subscribe comes after your first next, that's why you miss the first value. 3. call .asObservable where you pass it to another component (i.e pass proxySubject.asObservable()). Just calling it alone has no effect, it's a function and you don't do anything with the return value
      
     
     constructor(){
-     this.proxySubject = new ReplaySubject();
+        
+      
+        
+     //this.proxySubject = new ReplaySubject();
      //how to subscribe to the observable this can also done with simple
      //variable, lets not do this
     this.proxySubject = Observable.from(this.array);
@@ -38,11 +48,12 @@ export class first{
           
     //        console.log("from observable "+ data)
     //    })
-       this.proxySubject.subscribe(
+       this.proxySubject.subscribe(this.observer
     //            function(data){
     //       //if there is conosle with string all values will be string
     //        console.log(data)
-    //    }, function(e){
+    //    }
+       // function(e){
     //        console.log(e)
     //    }, function(){
     //        console.log("complete")
@@ -53,6 +64,7 @@ export class first{
        
        
         this.array.push(this.inputValue)
+        this.observer.next(this.array);
         //console.log(this.array);
     //     this.proxySubject.subscribe(function(data){
     //    console.log(data)

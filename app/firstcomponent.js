@@ -12,24 +12,28 @@ var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/from');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
-var ReplaySubject_1 = require('rxjs/ReplaySubject');
 //keyup and enter key event binding
 var first = (function () {
     //proxySubject = Observable.from(this.array);
     //  1. You are subscribing everytime the button clicked, you should subscribe once 2. Your first subscribe comes after your first next, that's why you miss the first value. 3. call .asObservable where you pass it to another component (i.e pass proxySubject.asObservable()). Just calling it alone has no effect, it's a function and you don't do anything with the return value
     function first() {
         this.array = [];
-        this.proxySubject = new ReplaySubject_1.ReplaySubject();
+        this.observer = {
+            next: function (v) { return console.log(v); },
+            complete: function () { return console.log("complete"); }
+        };
+        //this.proxySubject = new ReplaySubject();
         //how to subscribe to the observable this can also done with simple
         //variable, lets not do this
         this.proxySubject = Observable_1.Observable.from(this.array);
         //   Observable.from(this.array).subscribe(function(data){
         //        console.log("from observable "+ data)
         //    })
-        this.proxySubject.subscribe();
+        this.proxySubject.subscribe(this.observer);
     }
     first.prototype.addto = function () {
         this.array.push(this.inputValue);
+        this.observer.next(this.array);
         //console.log(this.array);
         //     this.proxySubject.subscribe(function(data){
         //    console.log(data)
