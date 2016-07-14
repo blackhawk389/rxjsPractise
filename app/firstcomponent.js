@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/from');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
+var Subject_1 = require('rxjs/Subject');
 //keyup and enter key event binding
 var first = (function () {
     //proxySubject = Observable.from(this.array);
@@ -22,7 +23,7 @@ var first = (function () {
             next: function (v) { return console.log(v); },
             complete: function () { return console.log("complete"); }
         };
-        //this.proxySubject = new ReplaySubject();
+        this.proxySubject = new Subject_1.Subject();
         //how to subscribe to the observable this can also done with simple
         //variable, lets not do this
         this.proxySubject = Observable_1.Observable.from(this.array);
@@ -33,7 +34,7 @@ var first = (function () {
     }
     first.prototype.addto = function () {
         this.array.push(this.inputValue);
-        this.observer.next(this.array);
+        this.proxySubject.next(this.array);
         //console.log(this.array);
         //     this.proxySubject.subscribe(function(data){
         //    console.log(data)

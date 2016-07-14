@@ -40,7 +40,7 @@ export class first{
         
       
         
-     //this.proxySubject = new ReplaySubject();
+     this.proxySubject = new Subject();
      //how to subscribe to the observable this can also done with simple
      //variable, lets not do this
     this.proxySubject = Observable.from(this.array);
@@ -64,7 +64,7 @@ export class first{
        
        
         this.array.push(this.inputValue)
-        this.observer.next(this.array);
+        this.proxySubject.next(this.array);
         //console.log(this.array);
     //     this.proxySubject.subscribe(function(data){
     //    console.log(data)
