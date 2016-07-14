@@ -40,15 +40,17 @@ export class first{
         
       
         
-     this.proxySubject = new Subject();
+     //this.proxySubject = new Subject();
      //how to subscribe to the observable this can also done with simple
      //variable, lets not do this
    // this.proxySubject = Observable.from(this.array);
-    //   Observable.from(this.array).subscribe(function(data){
+       Observable.from(this.array).subscribe(this.observer
+        //function(data){
           
     //        console.log("from observable "+ data)
-    //    })
-       this.proxySubject.subscribe(this.observer
+       //}
+       )
+       //this.proxySubject.subscribe(this.observer
     //            function(data){
     //       //if there is conosle with string all values will be string
     //        console.log(data)
@@ -58,13 +60,15 @@ export class first{
     //    }, function(){
     //        console.log("complete")
     //    })
-       )}
+      // )
+    }
     
     addto(){
        
        
         this.array.push(this.inputValue)
-        this.proxySubject.next(this.array);
+       // this.proxySubject.next(this.array);
+       this.observer.next(this.array);
         //console.log(this.array);
     //     this.proxySubject.subscribe(function(data){
     //    console.log(data)

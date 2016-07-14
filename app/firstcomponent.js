@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/from');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
-var Subject_1 = require('rxjs/Subject');
 //keyup and enter key event binding
 var first = (function () {
     //proxySubject = Observable.from(this.array);
@@ -22,18 +22,27 @@ var first = (function () {
             next: function (v) { return console.log(v); },
             complete: function () { return console.log("complete"); }
         };
-        this.proxySubject = new Subject_1.Subject();
+        //this.proxySubject = new Subject();
         //how to subscribe to the observable this can also done with simple
         //variable, lets not do this
         // this.proxySubject = Observable.from(this.array);
-        //   Observable.from(this.array).subscribe(function(data){
-        //        console.log("from observable "+ data)
+        Observable_1.Observable.from(this.array).subscribe(this.observer);
+        //this.proxySubject.subscribe(this.observer
+        //            function(data){
+        //       //if there is conosle with string all values will be string
+        //        console.log(data)
+        //    }
+        // function(e){
+        //        console.log(e)
+        //    }, function(){
+        //        console.log("complete")
         //    })
-        this.proxySubject.subscribe(this.observer);
+        // )
     }
     first.prototype.addto = function () {
         this.array.push(this.inputValue);
-        this.proxySubject.next(this.array);
+        // this.proxySubject.next(this.array);
+        this.observer.next(this.array);
         //console.log(this.array);
         //     this.proxySubject.subscribe(function(data){
         //    console.log(data)
