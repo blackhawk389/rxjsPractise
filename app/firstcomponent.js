@@ -27,14 +27,6 @@ var first = (function () {
         //        console.log("from observable "+ data)
         //    })
         this.proxySubject.subscribe();
-        //            function(data){
-        //       //if there is conosle with string all values will be string
-        //        console.log(data)
-        //    }, function(e){
-        //        console.log(e)
-        //    }, function(){
-        //        console.log("complete")
-        //    })
     }
     first.prototype.addto = function () {
         this.array.push(this.inputValue);

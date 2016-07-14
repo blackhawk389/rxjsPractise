@@ -47,7 +47,7 @@ export class first{
     //    }, function(){
     //        console.log("complete")
     //    })
-    }
+       )}
     
     addto(){
        
